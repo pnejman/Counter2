@@ -38,7 +38,6 @@ namespace Counter2
             }
         }
 
-
         public void Start()
         {
             this.timer.Enabled = true;

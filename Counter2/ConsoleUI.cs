@@ -10,8 +10,10 @@ namespace Counter2
     {
         public void ConsoleUIMain()
         {
-            SetupCounters(GetNumberOfCounters());
+            if (SetupCounters(EnterNumberOfCounters()) == true) StartCounters(this.counterList);
         }
+
+        List<Counter> counterList = new List<Counter>();
 
         private int ReadDataAsNumbers(string countersNumberGivenByUser)
         {
@@ -236,7 +238,7 @@ namespace Counter2
             return result;
         }
 
-        private int GetNumberOfCounters()
+        private int EnterNumberOfCounters()
         {
             bool useNumbers = false;
 
@@ -295,24 +297,121 @@ namespace Counter2
             return countersNumberParsed;
         }
 
-        private void SetupCounters(int numberOfCounters)
+        private int EnterCounterDelay()
+        {
+            Console.Write("Enter delay in miliseconds (e.g. 700 or 1200):\r\n" +
+               ">");
+
+            int delayValueEnteredInt = 0;
+            string delayValueEnteredString;
+
+            do
+            {
+                delayValueEnteredString = Console.ReadLine();
+
+                if (delayValueEnteredString.ToLower() == "exit")
+                {
+                    return -1;
+                }
+
+                try
+                {
+                    delayValueEnteredInt = Int32.Parse(delayValueEnteredString);
+                }
+                catch
+                {
+                    Console.Write($"Error. \"{delayValueEnteredString}\" is not valid integer number. Try again or type \"exit\" to exit program.\r\n" +
+                                  $">");
+                }
+            } while (delayValueEnteredInt == 0);
+
+            return delayValueEnteredInt;
+        }
+
+        private int EnterCounterEndvalue()
+        {
+            Console.Write("Enter counter length (e.g. 5 or 30):\r\n" +
+                                          ">");
+
+            int endValueEnteredInt = 0;
+            string endValueEnteredString;
+
+            do
+            {
+                endValueEnteredString = Console.ReadLine();
+
+                if (endValueEnteredString.ToLower() == "exit")
+                {
+                    return -1;
+                }
+
+                try
+                {
+                    endValueEnteredInt = Int32.Parse(endValueEnteredString);
+                }
+                catch
+                {
+                    Console.Write($"Error. \"{endValueEnteredString}\" is not valid integer number. Try again or type \"exit\" to exit program.\r\n" +
+                                  $">");
+                }
+            } while (endValueEnteredInt == 0);
+
+            return endValueEnteredInt;
+        }
+
+        private bool SetupCounters(int numberOfCounters)
         {
             if (numberOfCounters == 0)
-              {
-                return;
+            {
+                return false;
             }
 
-            Console.WriteLine($"\r\n\r\nNumber of counters: {numberOfCounters}");
+            Console.WriteLine($"\r\nNumber of counters: {numberOfCounters}");
 
-            Counter counter = new Counter(700, 30);
-            counter.Start();
+            for (int currentCounter = 0; currentCounter < numberOfCounters; currentCounter++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"\r\nCounter #{currentCounter}:");
+                Console.ForegroundColor = ConsoleColor.Gray;
 
-            Counter counter2 = new Counter(1000, 25);
-            counter2.Start();
+                int delayValueEnteredInt = EnterCounterDelay();
+                if (delayValueEnteredInt == -1) return false; //-1 is set if user type "exit"
 
-            Counter counter3 = new Counter(100, 100);
-            counter3.Start();
+                int endValueEnteredInt = EnterCounterEndvalue();
+                if (endValueEnteredInt == -1) return false; //-1 is set if user type "exit"
 
+                this.counterList.Add(new Counter(delayValueEnteredInt, endValueEnteredInt));
+            }
+            return true;
+        }
+
+        private void StartCounters(List<Counter> counterList)
+        {
+            Console.WriteLine("\r\nAll counters have been set. Type code below to launch or type \"cancel\" to exit program.");
+
+            string typedCaptcha;
+            string captchaFinal;
+            do
+            {
+                Random captchaRandomized = new Random();
+                captchaFinal = ((int)captchaRandomized.Next(9000) + 1000).ToString();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"« { captchaFinal} »");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write($">");
+
+                typedCaptcha = Console.ReadLine();
+                if (typedCaptcha.ToLower() == "cancel") return;
+                else if (typedCaptcha != captchaFinal)
+                {
+                    Console.WriteLine("Invalid launch code. Try again or type \"cancel\" to exit program.");
+                }
+            } while (typedCaptcha != captchaFinal);
+
+            for (int currentCounter = 0; currentCounter < counterList.Count; currentCounter++)
+            {
+                counterList[currentCounter].Start();
+            }
             Console.ReadKey(true);
         }
     }
