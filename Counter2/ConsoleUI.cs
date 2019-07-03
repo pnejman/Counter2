@@ -36,7 +36,7 @@ namespace Counter2
 
         }
 
-        private int ReadDataAsWords(string countersNumberGivenByUser)
+        private int ReadDataAsWords(string countersNumberGivenByUser) //that's quite a complex algorithm. is it UI related? or is it console related? if not... 
         {
             int result;
             string wordSearcher = ""; //temporary field to read input char by char
