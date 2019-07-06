@@ -8,9 +8,9 @@ namespace Counter2
 {
     class ConsoleUI
     {
-        public void ConsoleUIMain()
+        public void ConsoleUIMain() //what does 'ConsoleUIMain' do? Method name should tell what it does
         {
-            if (SetupCounters(EnterNumberOfCounters()) == true) StartCounters(this.counterList);
+            if (SetupCounters(EnterNumberOfCounters()) == true) StartCounters(this.counterList); //always always use curly brackets. Avoid one liners like that.
         }
 
         List<Counter> counterList = new List<Counter>();
@@ -36,7 +36,7 @@ namespace Counter2
 
         }
 
-        private int ReadDataAsWords(string countersNumberGivenByUser)
+        private int ReadDataAsWords(string countersNumberGivenByUser) //that's quite a complex algorithm. is it UI related? or is it console related? if not... 
         {
             int result;
             string wordSearcher = ""; //temporary field to read input char by char
@@ -238,7 +238,7 @@ namespace Counter2
             return result;
         }
 
-        private int EnterNumberOfCounters()
+        private int EnterNumberOfCounters() //this method does 2 things, doesnt it? (select type & enter number)
         {
             bool useNumbers = false;
 
@@ -263,7 +263,7 @@ namespace Counter2
                         break;
 
                     case (char)27: //"esc" key
-                        return 0;
+                        return 0; //so here you exit the loop by 'ESC' key... but below you need to type 'exit'?
 
                     default:
                         Console.Write("\r\nError. There is no such option. Try again or press \"Esc\" to exit program.\r\n>");
@@ -278,22 +278,22 @@ namespace Counter2
             {
                 string countersNumberGivenByUser = Console.ReadLine();
 
-                if (countersNumberGivenByUser.ToLower() == "exit")
+                if (countersNumberGivenByUser.ToLower() == "exit") //see above for the 'escape loop' logic
                 {
                     return 0;
                 }
-
-                if (useNumbers == true)
+                //how about change it a bit to a 'if - else' logic?
+                if (useNumbers)
                 {
                     countersNumberParsed = ReadDataAsNumbers(countersNumberGivenByUser);
                 }
-                else if (useNumbers == false)
+                else
                 {
                     countersNumberParsed = ReadDataAsWords(countersNumberGivenByUser.ToLower());
                 }
 
             } while (countersNumberParsed == 0);
-
+            //it's cool that you allow retry rather than kill the app if user makes a mistake:)
             return countersNumberParsed;
         }
 
@@ -323,7 +323,7 @@ namespace Counter2
                     Console.Write($"Error. \"{delayValueEnteredString}\" is not valid integer number. Try again or type \"exit\" to exit program.\r\n" +
                                   $">");
                 }
-            } while (delayValueEnteredInt == 0);
+            } while (delayValueEnteredInt == 0); //you have this do-while quite a few times in your code... perhaps this algorithm can be extracted somewhere and reused? DRY
 
             return delayValueEnteredInt;
         }
@@ -354,12 +354,12 @@ namespace Counter2
                     Console.Write($"Error. \"{endValueEnteredString}\" is not valid integer number. Try again or type \"exit\" to exit program.\r\n" +
                                   $">");
                 }
-            } while (endValueEnteredInt == 0);
+            } while (endValueEnteredInt == 0); //you have this do-while quite a few times in your code... perhaps this algorithm can be extracted somewhere and reused? DRY
 
             return endValueEnteredInt;
         }
 
-        private bool SetupCounters(int numberOfCounters)
+        private bool SetupCounters(int numberOfCounters) //its a good practice to make the boolean methods name in a way that 'answer a question', e.g. "AreCountersSetUp()"
         {
             if (numberOfCounters == 0)
             {
@@ -374,8 +374,9 @@ namespace Counter2
                 Console.WriteLine($"\r\nCounter #{currentCounter}:");
                 Console.ForegroundColor = ConsoleColor.Gray;
 
+                //remember about braces and never do if statements in one line. you will lose time on finding a bug sooner or later if you keep doing that
                 int delayValueEnteredInt = EnterCounterDelay();
-                if (delayValueEnteredInt == -1) return false; //-1 is set if user type "exit"
+                if (delayValueEnteredInt == -1) return false; //-1 is set if user type "exit" 
 
                 int endValueEnteredInt = EnterCounterEndvalue();
                 if (endValueEnteredInt == -1) return false; //-1 is set if user type "exit"
@@ -406,7 +407,7 @@ namespace Counter2
                 {
                     Console.WriteLine("Invalid launch code. Try again or type \"cancel\" to exit program.");
                 }
-            } while (typedCaptcha != captchaFinal);
+            } while (typedCaptcha != captchaFinal);  //lol, what?
 
             for (int currentCounter = 0; currentCounter < counterList.Count; currentCounter++)
             {

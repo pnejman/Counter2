@@ -11,7 +11,7 @@ namespace Counter2
     {
         readonly int endValue;
         int currentValue;
-        public int CurrentValue
+        public int CurrentValue //do you need it? And why not use an auto property?
         {
             get
             { return this.currentValue; }
@@ -43,12 +43,12 @@ namespace Counter2
             this.timer.Enabled = true;
         }
 
-        public virtual void ShowMsg(string msg) //overridible
+        public virtual void ShowMsg(string msg) //overridible... why public?
         {
             Console.WriteLine(msg);
         }
 
-        public virtual void End() //overridible
+        public virtual void End() //overridible... why public? 
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Counter ({this.timer.Interval}ms): Finished!");
