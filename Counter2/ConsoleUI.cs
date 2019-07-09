@@ -10,7 +10,10 @@ namespace Counter2
     {
         public void ConsoleUIMain() //what does 'ConsoleUIMain' do? Method name should tell what it does
         {
-            if (SetupCounters(EnterNumberOfCounters()) == true) StartCounters(this.counterList); //always always use curly brackets. Avoid one liners like that.
+            if (SetupCounters(EnterNumberOfCounters()) == true)
+            {
+                StartCounters(this.counterList);
+            }
         }
 
         List<Counter> counterList = new List<Counter>();
@@ -374,14 +377,20 @@ namespace Counter2
                 Console.WriteLine($"\r\nCounter #{currentCounter}:");
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                //remember about braces and never do if statements in one line. you will lose time on finding a bug sooner or later if you keep doing that
                 int delayValueEnteredInt = EnterCounterDelay();
-                if (delayValueEnteredInt == -1) return false; //-1 is set if user type "exit" 
+                if (delayValueEnteredInt == -1)
+                {
+                    return false;
+                }//-1 is set if user type "exit" 
 
                 int endValueEnteredInt = EnterCounterEndvalue();
-                if (endValueEnteredInt == -1) return false; //-1 is set if user type "exit"
+                if (endValueEnteredInt == -1)
+                {
+                    return false; //-1 is set if user type "exit"
+                }
 
                 this.counterList.Add(new Counter(delayValueEnteredInt, endValueEnteredInt));
+                counterList[counterList.Count - 1].counterEvent += OnCounterEvent; //subscribe to the newly created counter with "OnCounterEvent" method
             }
             return true;
         }
@@ -414,6 +423,20 @@ namespace Counter2
                 counterList[currentCounter].Start();
             }
             Console.ReadKey(true);
+        }
+
+        private void OnCounterEvent(object sender, bool isFinishedMsg, string msg) //event handler
+        {
+            if (isFinishedMsg == false)
+            {
+                Console.WriteLine(msg);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(msg);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
         }
     }
 }
