@@ -11,7 +11,7 @@ namespace Counter2
         static void Main(string[] args)
         {
             ConsoleUI consoleUi = new ConsoleUI();
-            consoleUi.ConsoleUIMain();
+            consoleUi.ConsoleUIStart();
         }
     }
 }

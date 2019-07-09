@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter2", "Counter2\Counte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLittleCounter", "MyLittleCounter\MyLittleCounter.csproj", "{7BE791FF-8D63-46C8-834C-E7CCD77A6131}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConverter", "TextToIntConverter\MyConverter.csproj", "{9A193D9C-C7F0-4F72-A50B-33B1C522246B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A193D9C-C7F0-4F72-A50B-33B1C522246B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A193D9C-C7F0-4F72-A50B-33B1C522246B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A193D9C-C7F0-4F72-A50B-33B1C522246B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A193D9C-C7F0-4F72-A50B-33B1C522246B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
