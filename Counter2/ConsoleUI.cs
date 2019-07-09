@@ -16,7 +16,7 @@ namespace Counter2
             }
         }
 
-        List<Counter> counterList = new List<Counter>();
+        List<MyLittleCounter.Counter> counterList = new List<MyLittleCounter.Counter>();
 
         private int ReadDataAsNumbers(string countersNumberGivenByUser)
         {
@@ -389,13 +389,13 @@ namespace Counter2
                     return false; //-1 is set if user type "exit"
                 }
 
-                this.counterList.Add(new Counter(delayValueEnteredInt, endValueEnteredInt));
+                this.counterList.Add(new MyLittleCounter.Counter(delayValueEnteredInt, endValueEnteredInt));
                 counterList[counterList.Count - 1].counterEvent += OnCounterEvent; //subscribe to the newly created counter with "OnCounterEvent" method
             }
             return true;
         }
 
-        private void StartCounters(List<Counter> counterList)
+        private void StartCounters(List<MyLittleCounter.Counter> counterList)
         {
             Console.WriteLine("\r\nAll counters have been set. Type code below to launch or type \"cancel\" to exit program.");
 
@@ -425,7 +425,7 @@ namespace Counter2
             Console.ReadKey(true);
         }
 
-        private void OnCounterEvent(object sender, bool isFinishedMsg, string msg) //event handler
+        private void OnCounterEvent(bool isFinishedMsg, string msg) //event handler
         {
             if (isFinishedMsg == false)
             {

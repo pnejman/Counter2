@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace Counter2
+namespace MyLittleCounter
 {
-    class Counter
+    public class Counter
     {
         readonly int endValue;
         int currentValue;
@@ -27,7 +27,7 @@ namespace Counter2
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             this.currentValue++;
-            
+
             if (counterEvent != null) //event cant have no subscribers
             {
                 counterEvent(false, $"Counter ({this.timer.Interval}ms): {this.currentValue}/{this.endValue}"); //raise event with arguments

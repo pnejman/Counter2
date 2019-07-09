@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter2", "Counter2\Counter2.csproj", "{BB2C0DAC-3CB5-4964-9628-BA1C0E14A4BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLittleCounter", "MyLittleCounter\MyLittleCounter.csproj", "{7BE791FF-8D63-46C8-834C-E7CCD77A6131}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB2C0DAC-3CB5-4964-9628-BA1C0E14A4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2C0DAC-3CB5-4964-9628-BA1C0E14A4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2C0DAC-3CB5-4964-9628-BA1C0E14A4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE791FF-8D63-46C8-834C-E7CCD77A6131}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
