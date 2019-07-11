@@ -171,6 +171,7 @@ namespace Counter2
 
                 this.counterList.Add(new MyLittleCounter.Counter(delayValueEnteredInt, endValueEnteredInt));
                 counterList[counterList.Count - 1].counterEvent += OnCounterEvent; //subscribe to the newly created counter with "OnCounterEvent" method
+                //do you think you could rewrite the 2 lines above to be clearer (and more potentially efficient, though in this case it won't be noticeable)?
             }
             return true;
         }
