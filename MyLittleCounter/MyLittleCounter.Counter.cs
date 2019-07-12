@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace MyLittleCounter
+namespace MyLittleCounter //again, not the best name (also, the file name should not contain the namespace name)
 {
     public class Counter
     {
@@ -14,7 +14,9 @@ namespace MyLittleCounter
         readonly Timer timer = new Timer();
 
         public delegate void CounterDelegate(bool isFinishedMsg, string msg); //new type of delegate carrying some arguments
+        //prefer to use existing EventHander<T> class, and wrap the event arguments in an extended version of EventArgs class (see the timer.Elapsed event for example)
         public event CounterDelegate counterEvent; //new event of delegate type
+        //look at the events that other objects expose (e.g timer, button etc) by reading the name of the event you know what happened (Elapsed, Clicked etc). CounterEvent does not tell what happened.
 
         public Counter(int delay, int endValue)
         {
@@ -33,7 +35,7 @@ namespace MyLittleCounter
                 counterEvent(false, $"Counter ({this.timer.Interval}ms): {this.currentValue}/{this.endValue}"); //raise event with arguments
             }
 
-            if (this.currentValue == this.endValue)
+            if (this.currentValue == this.endValue) //perhaps you need two events? 
             {
                 this.timer.Enabled = false;
                 if (counterEvent != null) //event cant have no subscribers

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyConverter
 {
-    public class Operation
+    public class Operation //not a very good name, sorry
     {
-        public delegate void AlertFromConverter(string alertMsg);
+        public delegate void AlertFromConverter(string alertMsg); //not always do you need to create custom delegates to support even handling. There is a build in delegate called EventHandler
         public event AlertFromConverter alertFromConverter; //event to send alerts as strings
 
         public int ReadDataAsWords(string countersNumberGivenByUser)
