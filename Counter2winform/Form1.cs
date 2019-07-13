@@ -12,7 +12,7 @@ namespace Counter2winform
 {
     public partial class Form1 : Form
     {
-        List<MyLittleCounter.Counter> counterList = new List<MyLittleCounter.Counter>();
+        List<MyLittleCounter.Counter> counterList = new List<MyLittleCounter.Counter>(); //rather than using fully qualified name, add a 'using MyLittleCounter' directive to file or namespace
         MyConverter.Operation converter = new MyConverter.Operation(); //create new Converter to convert user input (numeric or word) to integer
         int numberOfCounters;
 
@@ -46,6 +46,8 @@ namespace Counter2winform
 
                 consoleBox.AppendText($"\r\nNumber of counters: {countersNumberParsed}");
 
+                //what if your UI becomes bigger? 
+                //this set true/false becomes unmanageable...
                 buttonSubmitNumberOf.Enabled = false;
                 textboxInputNumber.Enabled = false;
                 checkboxInputAsWords.Enabled = false;
@@ -74,7 +76,7 @@ namespace Counter2winform
             {
                 SetupSingleCounter(Int32.Parse(textboxDelay.Text), Int32.Parse(textboxEndValue.Text));
             }
-            catch
+            catch //it is better to catch the exception variable and inform the user at least a bit on what is wrong
             {
                 consoleBox.AppendText($"\r\nError. Please input valid integer numbers.");
             }
@@ -108,7 +110,7 @@ namespace Counter2winform
         {
             if (isFinishedMsg == false)
             {
-                consoleBox.Invoke(new Action(() => consoleBox.AppendText($"{msg}\r\n")));
+                consoleBox.Invoke(new Action(() => consoleBox.AppendText($"{msg}\r\n"))); //BeginInvoke might be a better idea than Invoke (as BeginInvoke will not block the UI thread until the delegate is complete)
             }
             else
             {
@@ -120,7 +122,7 @@ namespace Counter2winform
         private void ButtonLaunch_Click(object sender, EventArgs e)
         {
             buttonLaunch.Enabled = false;
-            for (int currentCounter = 0; currentCounter < counterList.Count; currentCounter++)
+            for (int currentCounter = 0; currentCounter < counterList.Count; currentCounter++) //why not foreach loop?
             {
                 counterList[currentCounter].Start();
             }
