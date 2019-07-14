@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Counter2winform
@@ -31,13 +25,17 @@ namespace Counter2winform
         {
             int countersNumberParsed = 0;
 
-            if (checkboxInputAsWords.Checked == false)
+            if (checkboxInputAsWords.Checked == checkboxInputAsRomanNumber.Checked)
             {
                 countersNumberParsed = converter.ReadDataAsNumbers(textboxInputNumber.Text);
             }
-            else
+            else if (checkboxInputAsWords.Checked == true)
             {
                 countersNumberParsed = converter.ReadDataAsWords(textboxInputNumber.Text.ToLower());
+            }
+            else
+            {
+                countersNumberParsed = converter.RomanToInteger(textboxInputNumber.Text.ToLower());
             }
 
             if (countersNumberParsed != 0)

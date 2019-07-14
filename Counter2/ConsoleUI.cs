@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Counter2
 {
@@ -23,10 +20,12 @@ namespace Counter2
             MyConverter.Operation converter = new MyConverter.Operation(); //create new Converter to convert user input (numeric or word) to integer
             converter.alertFromConverter += OnAlertFromConverter; //subscribe to converter's alert msgs
 
-            bool useNumbers = false;
+            // bool useNumbers = false;
+            int methodChosen = -1;
 
             Console.Write("Press a key to select input type:\r\n" +
-                          "1. Numeric\r\n" +
+                          "0. Numeric - Arabic\r\n" +
+                          "1. Numeric - Roman\r\n" +
                           "2. Words\r\n" +
                           ">");
             ConsoleKeyInfo choice;
@@ -37,12 +36,15 @@ namespace Counter2
 
                 switch (choice.KeyChar)
                 {
+                    case '0':
+                        methodChosen = 0;
+                        break;
                     case '1':
-                        useNumbers = true;
+                        methodChosen = 1;
                         break;
 
                     case '2':
-                        useNumbers = false;
+                        methodChosen = 2;
                         break;
 
                     case (char)27: //"esc" key
@@ -53,7 +55,7 @@ namespace Counter2
                         break;
                 }
 
-            } while ((choice.KeyChar != '1') && (choice.KeyChar != '2'));
+            } while ((choice.KeyChar != '0') && (choice.KeyChar != '1') && (choice.KeyChar != '2'));
 
             Console.Write("\r\n\r\nInput number of counters:\r\n>");
             int countersNumberParsed = 0;
@@ -66,13 +68,17 @@ namespace Counter2
                     return 0;
                 }
                 //how about change it a bit to a 'if - else' logic?
-                if (useNumbers)
+                if (methodChosen == 1)
                 {
                     countersNumberParsed = converter.ReadDataAsNumbers(countersNumberGivenByUser);
                 }
-                else
+                else if (methodChosen == 2)
                 {
                     countersNumberParsed = converter.ReadDataAsWords(countersNumberGivenByUser.ToLower());
+                }
+                else if (methodChosen == 0)
+                {
+                    countersNumberParsed = converter.RomanToInteger(countersNumberGivenByUser.ToLower());
                 }
 
             } while (countersNumberParsed == 0);
