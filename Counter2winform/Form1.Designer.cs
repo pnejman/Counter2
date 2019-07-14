@@ -41,6 +41,7 @@
             this.buttonSubmitSetup = new System.Windows.Forms.Button();
             this.labelCurrentCounter = new System.Windows.Forms.Label();
             this.buttonLaunch = new System.Windows.Forms.Button();
+            this.checkboxInputAsRomanNumber = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelEnterNumberLabel
@@ -168,11 +169,22 @@
             this.buttonLaunch.UseVisualStyleBackColor = true;
             this.buttonLaunch.Click += new System.EventHandler(this.ButtonLaunch_Click);
             // 
+            // checkboxInputAsRomanNumber
+            // 
+            this.checkboxInputAsRomanNumber.AutoSize = true;
+            this.checkboxInputAsRomanNumber.Location = new System.Drawing.Point(293, 36);
+            this.checkboxInputAsRomanNumber.Name = "checkboxInputAsRomanNumber";
+            this.checkboxInputAsRomanNumber.Size = new System.Drawing.Size(141, 17);
+            this.checkboxInputAsRomanNumber.TabIndex = 14;
+            this.checkboxInputAsRomanNumber.Text = "Input as Roman Number";
+            this.checkboxInputAsRomanNumber.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 475);
+            this.Controls.Add(this.checkboxInputAsRomanNumber);
             this.Controls.Add(this.buttonLaunch);
             this.Controls.Add(this.labelCurrentCounter);
             this.Controls.Add(this.buttonSubmitSetup);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.Button buttonSubmitSetup;
         private System.Windows.Forms.Label labelCurrentCounter;
         private System.Windows.Forms.Button buttonLaunch;
+        private System.Windows.Forms.CheckBox checkboxInputAsRomanNumber;
     }
 }
 
